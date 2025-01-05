@@ -10,8 +10,18 @@ void setup() {
   digitalWrite(dirPin, LOW);
 }
 
+int n = 64;
 void loop() {
-  step(200, 10);
+  int a = analogRead(A0);
+  n = map(a, 0, 1023, 0, 127);
+  /*if (Serial.available() > 0) {
+    int b = Serial.read();
+    if (b > 0) {
+      n = b;
+    }
+  }*/
+  int d = map(n, 0, 127, 1, 30);
+  step(8, d);
 }
 
 void step(int times, int d) {
